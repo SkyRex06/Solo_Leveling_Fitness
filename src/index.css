@@ -1,0 +1,175 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 27% 12%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 24% 15%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 24% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 261 80% 63%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 91% 49%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 64%;
+    --muted-foreground: 0 0% 90%;
+
+    --accent: 317 73% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 25%;
+    --input: 240 5% 25%;
+    --ring: 261 80% 63%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 27% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 261 80% 63%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply bg-card rounded-lg p-4 shadow-lg border border-anime-purple/20 hover:border-anime-purple/50 transition-all duration-300;
+  }
+  
+  .anime-gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-anime-purple to-anime-blue font-bold;
+  }
+  
+  .quest-card {
+    @apply bg-card rounded-lg p-4 shadow-lg border border-anime-purple/20 hover:border-anime-purple/50 transition-all duration-300 cursor-pointer;
+  }
+  
+  .energy-bar {
+    @apply h-3 rounded-full bg-gray-700 overflow-hidden relative;
+  }
+  
+  .energy-fill {
+    @apply h-full bg-gradient-to-r from-anime-blue to-anime-purple transition-all duration-300;
+  }
+  
+  .xp-bar {
+    @apply h-2 rounded-full bg-gray-700 overflow-hidden relative;
+  }
+  
+  .xp-fill {
+    @apply h-full bg-gradient-to-r from-anime-pink to-anime-purple transition-all duration-300;
+  }
+  
+  .badge-item {
+    @apply flex flex-col items-center justify-center p-2 rounded-full bg-anime-darkBg border-2 border-anime-purple/50 w-16 h-16 animate-pulse-glow;
+  }
+  
+  /* Solo Leveling specific styles */
+  .solo-leveling-toast {
+    @apply border border-anime-purple/30 shadow-[0_0_15px_rgba(139,92,246,0.3)];
+  }
+  
+  .system-notification {
+    @apply fixed bottom-6 right-6 bg-card/90 backdrop-blur-md border border-anime-purple/30 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.3)] p-4 max-w-xs animate-fade-in z-50;
+  }
+  
+  .gate-glow {
+    @apply relative;
+  }
+  
+  .gate-glow::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-anime-purple to-anime-blue rounded-md opacity-75 blur;
+    z-index: -1;
+  }
+}
+
+/* Solo Leveling animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.8), 0 0 20px rgba(139, 92, 246, 0.5); 
+  }
+  50% { 
+    opacity: 0.7;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 1), 0 0 30px rgba(139, 92, 246, 0.8); 
+  }
+}
+
+@keyframes level-up {
+  0% { 
+    transform: scale(1);
+    opacity: 0.7; 
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 0.7; 
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+  
+  .animate-level-up {
+    animation: level-up 1s ease-in-out;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
